@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define MX 100
+void sem();
+void com();
+int main(){
+    int conta = 1;
+    int opcao = 0;
+    puts("Deseja executar a função com ou sem strcmp? \n Digite 0 para sem e 1 para com");
+    scanf("%d",&opcao);
+    getchar();
+    if(opcao == 0){
+        sem();
+    }
+    else if(opcao == 1){
+        com();
+    }
+    else{
+        printf("Opção inválida");
+    }
+    
+    return 0;
+}
+void sem(){
+    char algo[MX];
+    char amais[MX];
+    int conta = 1;
+    puts("Digite alguma string");
+    fgets(algo,MX,stdin);
+    for(int i = 0;i < MX-1;i++){
+        if(algo[i] == '\n'){
+            algo[i] = '\0';
+            break;
+        }
+    }
+    puts("Digite outra string");
+    fgets(amais,MX,stdin);
+    for(int i = 0;i < MX-1; i++){
+        if(amais[i] == '\n'){
+            amais[i] = '\0';
+            break;
+        }
+    }
+    for(int i = 0;algo[i] != '\0' || amais[i] != '\0';i++){
+        if(algo[i] != amais[i]){
+            conta = 0;
+            break;
+        }
+    }
+    if(conta){
+        printf("Strings iguais!");
+    }
+    else{
+        printf("Strings diferentes");
+    }
+}
+void com() {
+    char algo[MX];
+    char amais[MX];
+    
+    puts("Digite alguma string");
+    fgets(algo,MX,stdin);
+    
+    puts("Digite outra string");
+    fgets(amais,MX,stdin);
+    
+    if(strcmp(algo,amais) == 0){
+        printf("Strings iguais!");
+    }
+    else{
+        printf("Strings diferentes");
+    }
+}
