@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define MX 100
+int main() {
+    char palavra[MX];
+    char palavra_inv[MX];
+    
+    puts("Digite a palavra desejada: ");
+    fgets(palavra,MX,stdin);
+    
+    size_t larg = strlen(palavra);
+    if(palavra[larg-1] == '\n'){
+        palavra[larg-1] == '\0';
+        larg--;
+    }
+    for(int i = 0; i<larg;i++){
+        palavra_inv[i] = palavra[larg - 1 - i];
+    }
+    palavra_inv[larg] = '\0';
+    printf("Palavra invertida: %s",palavra_inv);
+    return 0;
+}
