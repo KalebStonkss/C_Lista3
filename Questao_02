@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define MX 100
+int main() {
+    char algo[MX];
+    char amais;
+    int achou = 0;
+    
+    puts("Digite alguma coisa: ");
+    fgets(algo, MX, stdin);
+    
+    puts("Digite algum caracter: ");
+    scanf(" %c",&amais);
+    for(int i = 0; i < MX-1; i++){
+        if (algo[i] == amais){
+            achou = 1;
+        }
+    }
+    if(achou){
+        printf("Há o caractere escolhido na string");
+    }
+    else{
+        printf("O caractere escolhido não está presente na string");
+    }
+    
+    return 0;
+}
