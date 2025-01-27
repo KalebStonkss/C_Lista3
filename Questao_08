@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define TAM 100
+void bubble();
+void selecao();
+int main() {
+    int decisao;
+    puts("Deseja qual tipo de ordenação? Digite 0 para Bubblesort ou 1 para seleção");
+    scanf("%d",&decisao);
+    if(decisao == 0){
+        bubble();
+    }
+    if(decisao == 1){
+        selecao();
+    }
+    
+    return 0;
+}
+void bubble(){
+    int num[TAM],n,n_dois,flag;
+    puts("Digite o primeiro número para o intervalo desejado de números para o vetor, tipo (7-16,etc...)\n");
+    scanf("%d",&n);
+    puts("Agora para o último número do intervalo \n");
+    scanf("%d",&n_dois);
+    srand(time(NULL));
+    for(int i = 0; i<TAM;i++){
+        num[i] = n + rand() % (n_dois - n + 1);
+    }
+    printf("Valores atuais: \n");
+    for(int i = 0; i<TAM;i++){
+        printf("|%2d| \t",num[i]);
+    }
+    for(int k = 0;k<TAM;k++){
+        flag = 1;
+        for(int i = 0;i<TAM-1;i++){
+            if(num[i] > num[i+1]){
+                num[i] = num[i]^num[i+1];
+                num[i+1] = num[i]^num[i+1];
+                num[i] = num[i]^num[i+1];
+                flag=0;
+            }
+        }
+        if(flag){
+            break;
+        }
+    }
+    printf("Ordenado com bubble sort: \n");
+    for(int i = 0; i<TAM;i++){
+        printf("|%2d| \t",num[i]);
+        printf("\n");
+    }
+}
+void selecao(){
+    int num[TAM],n,n_dois,aux;
+    
+    puts("Digite o primeiro número para o intervalo desejado de números para o vetor, tipo (7-16,etc...)\n");
+    scanf("%d",&n);
+    puts("Agora para o último número do intervalo \n");
+    scanf("%d",&n_dois);
+    srand(time(NULL));
+    for(int i = 0; i<TAM;i++){
+        num[i] = n + rand() % (n_dois - n + 1);
+    }
+    printf("Valores atuais: \n");
+    for(int i = 0; i<TAM;i++){
+        printf("|%2d| \t",num[i]);
+    }
+    
+    for(int i = 0; i<TAM;i++){
+        int num_m = i;
+        for(int j = i+1;j<TAM;j++){
+            if(num[j]<num[num_m]){
+                num_m = j;
+            }
+        }
+            aux = num[i];
+            num[i] = num[num_m];
+            num[num_m] = aux;
+    }
+    printf("Ordenado com seleção: \n");
+    for(int i = 0; i<TAM;i++){
+        printf("|%2d| \t",num[i]);
+        printf("\n");
+    }
+}
